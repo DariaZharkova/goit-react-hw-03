@@ -12,6 +12,13 @@ const initialContacts = [
 
 export const App = () => {
   const [contacts, setContacts] = useState(initialContacts);
+  const [contactFilter, setContactFilter] = useState("");
+
+  const addContact = (newContact) => {
+    setContacts((prevContact) => {
+      return [...prevContact, newContact];
+    });
+  };
 
   const deleteContact = (contactId) => {
     setContacts((prevContact) => {
@@ -19,12 +26,16 @@ export const App = () => {
     });
   };
 
+  const visibleContacts = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(contactFilter.toLowerCase())
+  );
+
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactForm />
-      <SearchBox />
-      <ContactList items={contacts} onDelete={deleteContact} />
+      <ContactForm onAdd={addContact} />
+      <SearchBox value={contactFilter} onChange={setContactFilter} />
+      <ContactList items={visibleContacts} onDelete={deleteContact} />
     </div>
   );
 };
