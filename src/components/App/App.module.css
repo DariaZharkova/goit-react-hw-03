@@ -1,0 +1,10 @@
+.container {
+  padding: 16px;
+  background-image: linear-gradient(rgba(52, 165, 137, 0.427), #ffffff);
+}
+
+.title {
+  margin-bottom: 20px;
+  font-size: 42px;
+  color: rgb(51, 101, 88);
+}
